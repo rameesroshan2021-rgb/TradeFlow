@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>TradeFlow · Import/Export Platform</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="logo" onclick="navigateTo('dashboard')">
+      <span class="icon"><i class="fas fa-ship"></i></span>
+      <h1>TradeFlow</h1>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active" data-page="dashboard"><i class="fas fa-th-large"></i> Dashboard</a>
+      <a href="#" data-page="orders"><i class="fas fa-list-ul"></i> Orders</a>
+      <a href="#" data-page="products"><i class="fas fa-boxes"></i> Products</a>
+      <a href="#" data-page="customers"><i class="fas fa-users"></i> Customers</a>
+      <a href="#" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" title="Notifications"><i class="fas fa-bell"></i></button>
+      <button class="btn-icon" title="Profile"><i class="fas fa-user-circle"></i></button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- ===== DASHBOARD ===== -->
+    <section id="page-dashboard" class="page active">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="label"><i class="fas fa-boxes" style="color:#d4af37;"></i> Total Orders</div><div class="value" id="dashTotalOrders">0</div><div class="sub">Active shipments</div></div>
+        <div class="stat-card"><div class="label"><i class="fas fa-arrow-down" style="color:#2d6b4f;"></i> Imports</div><div class="value" id="dashImports">0</div><div class="sub">Inbound</div></div>
+        <div class="stat-card"><div class="label"><i class="fas fa-arrow-up" style="color:#b8962e;"></i> Exports</div><div class="value" id="dashExports">0</div><div class="sub">Outbound</div></div>
+        <div class="stat-card"><div class="label"><i class="fas fa-clock" style="color:#8a6a4a;"></i> In Transit</div><div class="value" id="dashInTransit">0</div><div class="sub">Moving</div></div>
+        <div class="stat-card"><div class="label"><i class="fas fa-users" style="color:#1a2f3f;"></i> Customers</div><div class="value" id="dashCustomers">0</div><div class="sub">Unique</div></div>
+        <div class="stat-card"><div class="label"><i class="fas fa-dollar-sign" style="color:#d4af37;"></i> Revenue</div><div class="value" id="dashRevenue">$0</div><div class="sub">Estimated</div></div>
+      </div>
+      <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
+        <div class="panel">
+          <div class="panel-header"><h3>Recent Orders</h3><span class="badge" style="background:rgba(212,175,55,0.12); padding:4px 14px; border-radius:40px; font-size:0.7rem;">Latest 5</span></div>
+          <div class="table-wrapper">
+            <table><thead><tr><th>Product</th><th>Customer</th><th>Status</th></tr></thead>
+            <tbody id="dashRecentOrders"><tr><td colspan="3" style="text-align:center; padding:20px; color:#8a7a6a;">No orders yet</td></tr></tbody></table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><h3>Live Activity</h3><span class="badge"><i class="fas fa-circle" style="color:#2d6b4f; font-size:8px;"></i> Live</span></div>
+          <div id="dashActivity" style="max-height:300px; overflow-y:auto;">
+            <div style="text-align:center; padding:20px; color:#8a7a6a;">No activity</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ORDERS ===== -->
+    <section id="page-orders" class="page">
+      <div class="panel">
+        <div class="panel-header">
+          <h3><i class="fas fa-list-ul" style="color:#d4af37;"></i> All Orders</h3>
+          <div>
+            <button class="btn btn-outline" id="exportCsvBtn"><i class="fas fa-file-export"></i> Export</button>
+            <button class="btn btn-primary" id="sampleDataBtn"><i class="fas fa-database"></i> Load Demo</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead><tr><th>Product</th><th>Customer</th><th>Type</th><th>Qty</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="ordersTableBody"><tr><td colspan="6" style="text-align:center; padding:30px; color:#8a7a6a;">No orders</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Add Order Form (with customer) -->
+      <div class="panel">
+        <div class="panel-header"><h3><i class="fas fa-plus-circle" style="color:#d4af37;"></i> Register New Shipment</h3></div>
+        <form id="addOrderForm" class="form-grid">
+          <div class="form-group"><label>Product</label><input type="text" id="productName" placeholder="Name" required></div>
+          <div class="form-group"><label>Category</label><input type="text" id="productCategory" placeholder="Category" required></div>
+          <div class="form-group"><label>Qty</label><input type="number" id="productQty" placeholder="100" min="1" required></div>
+          <div class="form-group"><label>Type</label><select id="productType"><option value="import">Import</option><option value="export">Export</option></select></div>
+          <div class="form-group"><label>Status</label><select id="productStatus"><option value="In Transit">In Transit</option><option value="Warehouse">Warehouse</option><option value="Customs">Customs</option><option value="Delivered">Delivered</option></select></div>
+          <div class="form-group"><label>Image</label><input type="file" id="productImage" accept="image/*"></div>
+          <div class="form-group"><label>Customer Name</label><input type="text" id="customerName" placeholder="Full name" required></div>
+          <div class="form-group"><label>Email</label><input type="email" id="customerEmail" placeholder="email@example.com" required></div>
+          <div class="form-group"><label>Phone</label><input type="tel" id="customerPhone" placeholder="+1 234 567 890" required></div>
+          <div class="form-group" style="grid-column:1/-1;"><label>Address</label><input type="text" id="customerAddress" placeholder="Street, City, Country" required></div>
+          <div style="grid-column:1/-1; display:flex; gap:12px; flex-wrap:wrap;">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Register</button>
+            <button type="reset" class="btn btn-outline"><i class="fas fa-undo-alt"></i> Clear</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <section id="page-products" class="page">
+      <div class="panel">
+        <div class="panel-header"><h3><i class="fas fa-boxes" style="color:#d4af37;"></i> Product Inventory</h3>
+          <button class="btn btn-primary" id="addProductBtn"><i class="fas fa-plus"></i> Add Product</button>
+        </div>
+        <div class="table-wrapper">
+          <table><thead><tr><th>Name</th><th>Category</th><th>Stock</th><th>Type</th></tr></thead>
+            <tbody id="productsTableBody"><tr><td colspan="4" style="text-align:center; padding:20px; color:#8a7a6a;">No products</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CUSTOMERS ===== -->
+    <section id="page-customers" class="page">
+      <div class="panel">
+        <div class="panel-header"><h3><i class="fas fa-users" style="color:#d4af37;"></i> Customer Directory</h3></div>
+        <div class="table-wrapper">
+          <table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Orders</th></tr></thead>
+            <tbody id="customersTableBody"><tr><td colspan="4" style="text-align:center; padding:20px; color:#8a7a6a;">No customers</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SETTINGS ===== -->
+    <section id="page-settings" class="page">
+      <div class="panel">
+        <div class="panel-header"><h3><i class="fas fa-cog" style="color:#d4af37;"></i> Settings</h3></div>
+        <div class="setting-item">
+          <div><div class="label">Dark Mode</div><div class="desc">Switch to dark theme</div></div>
+          <div class="toggle" id="darkModeToggle" onclick="toggleDarkMode()"></div>
+        </div>
+        <div class="setting-item">
+          <div><div class="label">Email Notifications</div><div class="desc">Receive order updates via email</div></div>
+          <div class="toggle active" id="emailToggle" onclick="toggleEmail()"></div>
+        </div>
+        <div class="setting-item">
+          <div><div class="label">Currency</div><div class="desc">Display currency for revenue</div></div>
+          <select style="padding:8px 16px; border-radius:12px; border:1px solid #d4c5b8; background:transparent;">
+            <option>USD ($)</option><option>EUR (€)</option><option>GBP (£)</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <div><div class="label">Reset All Data</div><div class="desc">Clear all orders, products, customers</div></div>
+          <button class="btn btn-danger" id="resetBtn"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col"><h4>TradeFlow</h4><ul><li><a href="#" onclick="navigateTo('dashboard')">Dashboard</a></li><li><a href="#" onclick="navigateTo('orders')">Orders</a></li><li><a href="#" onclick="navigateTo('products')">Products</a></li><li><a href="#" onclick="navigateTo('customers')">Customers</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="#">Help Center</a></li><li><a href="#">Documentation</a></li><li><a href="#">API</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Cookie Policy</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 TradeFlow. All rights reserved. Crafted with <i class="fas fa-heart" style="color:#d4af37;"></i></div>
+  </footer>
+</div>
+
+<!-- External JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
