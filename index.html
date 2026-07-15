@@ -2,169 +2,240 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>TradeFlow · Import/Export Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Aurelia · Creative Trade Solutions</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app-wrapper">
-  <!-- Navigation -->
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <a href="#" class="logo" onclick="navigateTo('dashboard')">
-      <span class="icon"><i class="fas fa-ship"></i></span>
-      <h1>TradeFlow</h1>
-    </a>
-    <div class="nav-links">
-      <a href="#" class="active" data-page="dashboard"><i class="fas fa-th-large"></i> Dashboard</a>
-      <a href="#" data-page="orders"><i class="fas fa-list-ul"></i> Orders</a>
-      <a href="#" data-page="products"><i class="fas fa-boxes"></i> Products</a>
-      <a href="#" data-page="customers"><i class="fas fa-users"></i> Customers</a>
-      <a href="#" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
-    </div>
-    <div class="nav-actions">
-      <button class="btn-icon" title="Notifications"><i class="fas fa-bell"></i></button>
-      <button class="btn-icon" title="Profile"><i class="fas fa-user-circle"></i></button>
+    <div class="container">
+      <a href="#" class="logo"><i class="fas fa-gem"></i> Aurelia<span>Trade</span></a>
+      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- ===== DASHBOARD ===== -->
-    <section id="page-dashboard" class="page active">
-      <div class="stats-grid">
-        <div class="stat-card"><div class="label"><i class="fas fa-boxes" style="color:#d4af37;"></i> Total Orders</div><div class="value" id="dashTotalOrders">0</div><div class="sub">Active shipments</div></div>
-        <div class="stat-card"><div class="label"><i class="fas fa-arrow-down" style="color:#2d6b4f;"></i> Imports</div><div class="value" id="dashImports">0</div><div class="sub">Inbound</div></div>
-        <div class="stat-card"><div class="label"><i class="fas fa-arrow-up" style="color:#b8962e;"></i> Exports</div><div class="value" id="dashExports">0</div><div class="sub">Outbound</div></div>
-        <div class="stat-card"><div class="label"><i class="fas fa-clock" style="color:#8a6a4a;"></i> In Transit</div><div class="value" id="dashInTransit">0</div><div class="sub">Moving</div></div>
-        <div class="stat-card"><div class="label"><i class="fas fa-users" style="color:#1a2f3f;"></i> Customers</div><div class="value" id="dashCustomers">0</div><div class="sub">Unique</div></div>
-        <div class="stat-card"><div class="label"><i class="fas fa-dollar-sign" style="color:#d4af37;"></i> Revenue</div><div class="value" id="dashRevenue">$0</div><div class="sub">Estimated</div></div>
-      </div>
-      <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
-        <div class="panel">
-          <div class="panel-header"><h3>Recent Orders</h3><span class="badge" style="background:rgba(212,175,55,0.12); padding:4px 14px; border-radius:40px; font-size:0.7rem;">Latest 5</span></div>
-          <div class="table-wrapper">
-            <table><thead><tr><th>Product</th><th>Customer</th><th>Status</th></tr></thead>
-            <tbody id="dashRecentOrders"><tr><td colspan="3" style="text-align:center; padding:20px; color:#8a7a6a;">No orders yet</td></tr></tbody></table>
-          </div>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-bg-text">GLOBAL</div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="tag"><i class="fas fa-shield-alt"></i> Verified & Creative</span>
+        <h1>Beyond <br><span class="highlight">Borders</span></h1>
+        <p>We fuse art with logistics to deliver premium import/export solutions. Trusted by 500+ global partners.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Start Your Journey</a>
+          <a href="#services" class="btn btn-outline">Explore</a>
         </div>
-        <div class="panel">
-          <div class="panel-header"><h3>Live Activity</h3><span class="badge"><i class="fas fa-circle" style="color:#2d6b4f; font-size:8px;"></i> Live</span></div>
-          <div id="dashActivity" style="max-height:300px; overflow-y:auto;">
-            <div style="text-align:center; padding:20px; color:#8a7a6a;">No activity</div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Luxury Shipping Container">
+          <div class="hero-stats-card">
+            <div class="stat-item"><span class="num">80+</span><span class="lbl">Countries</span></div>
+            <div class="stat-item"><span class="num">2.4K</span><span class="lbl">Shipments</span></div>
+            <div class="stat-item"><span class="num">500+</span><span class="lbl">Partners</span></div>
+            <div class="stat-item"><span class="num">99.8%</span><span class="lbl">Success</span></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== ORDERS ===== -->
-    <section id="page-orders" class="page">
-      <div class="panel">
-        <div class="panel-header">
-          <h3><i class="fas fa-list-ul" style="color:#d4af37;"></i> All Orders</h3>
-          <div>
-            <button class="btn btn-outline" id="exportCsvBtn"><i class="fas fa-file-export"></i> Export</button>
-            <button class="btn btn-primary" id="sampleDataBtn"><i class="fas fa-database"></i> Load Demo</button>
-          </div>
-        </div>
-        <div class="table-wrapper">
-          <table>
-            <thead><tr><th>Product</th><th>Customer</th><th>Type</th><th>Qty</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody id="ordersTableBody"><tr><td colspan="6" style="text-align:center; padding:30px; color:#8a7a6a;">No orders</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-      <!-- Add Order Form (with customer) -->
-      <div class="panel">
-        <div class="panel-header"><h3><i class="fas fa-plus-circle" style="color:#d4af37;"></i> Register New Shipment</h3></div>
-        <form id="addOrderForm" class="form-grid">
-          <div class="form-group"><label>Product</label><input type="text" id="productName" placeholder="Name" required></div>
-          <div class="form-group"><label>Category</label><input type="text" id="productCategory" placeholder="Category" required></div>
-          <div class="form-group"><label>Qty</label><input type="number" id="productQty" placeholder="100" min="1" required></div>
-          <div class="form-group"><label>Type</label><select id="productType"><option value="import">Import</option><option value="export">Export</option></select></div>
-          <div class="form-group"><label>Status</label><select id="productStatus"><option value="In Transit">In Transit</option><option value="Warehouse">Warehouse</option><option value="Customs">Customs</option><option value="Delivered">Delivered</option></select></div>
-          <div class="form-group"><label>Image</label><input type="file" id="productImage" accept="image/*"></div>
-          <div class="form-group"><label>Customer Name</label><input type="text" id="customerName" placeholder="Full name" required></div>
-          <div class="form-group"><label>Email</label><input type="email" id="customerEmail" placeholder="email@example.com" required></div>
-          <div class="form-group"><label>Phone</label><input type="tel" id="customerPhone" placeholder="+1 234 567 890" required></div>
-          <div class="form-group" style="grid-column:1/-1;"><label>Address</label><input type="text" id="customerAddress" placeholder="Street, City, Country" required></div>
-          <div style="grid-column:1/-1; display:flex; gap:12px; flex-wrap:wrap;">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Register</button>
-            <button type="reset" class="btn btn-outline"><i class="fas fa-undo-alt"></i> Clear</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- ===== PRODUCTS ===== -->
-    <section id="page-products" class="page">
-      <div class="panel">
-        <div class="panel-header"><h3><i class="fas fa-boxes" style="color:#d4af37;"></i> Product Inventory</h3>
-          <button class="btn btn-primary" id="addProductBtn"><i class="fas fa-plus"></i> Add Product</button>
-        </div>
-        <div class="table-wrapper">
-          <table><thead><tr><th>Name</th><th>Category</th><th>Stock</th><th>Type</th></tr></thead>
-            <tbody id="productsTableBody"><tr><td colspan="4" style="text-align:center; padding:20px; color:#8a7a6a;">No products</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CUSTOMERS ===== -->
-    <section id="page-customers" class="page">
-      <div class="panel">
-        <div class="panel-header"><h3><i class="fas fa-users" style="color:#d4af37;"></i> Customer Directory</h3></div>
-        <div class="table-wrapper">
-          <table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Orders</th></tr></thead>
-            <tbody id="customersTableBody"><tr><td colspan="4" style="text-align:center; padding:20px; color:#8a7a6a;">No customers</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SETTINGS ===== -->
-    <section id="page-settings" class="page">
-      <div class="panel">
-        <div class="panel-header"><h3><i class="fas fa-cog" style="color:#d4af37;"></i> Settings</h3></div>
-        <div class="setting-item">
-          <div><div class="label">Dark Mode</div><div class="desc">Switch to dark theme</div></div>
-          <div class="toggle" id="darkModeToggle" onclick="toggleDarkMode()"></div>
-        </div>
-        <div class="setting-item">
-          <div><div class="label">Email Notifications</div><div class="desc">Receive order updates via email</div></div>
-          <div class="toggle active" id="emailToggle" onclick="toggleEmail()"></div>
-        </div>
-        <div class="setting-item">
-          <div><div class="label">Currency</div><div class="desc">Display currency for revenue</div></div>
-          <select style="padding:8px 16px; border-radius:12px; border:1px solid #d4c5b8; background:transparent;">
-            <option>USD ($)</option><option>EUR (€)</option><option>GBP (£)</option>
-          </select>
-        </div>
-        <div class="setting-item">
-          <div><div class="label">Reset All Data</div><div class="desc">Clear all orders, products, customers</div></div>
-          <button class="btn btn-danger" id="resetBtn"><i class="fas fa-trash"></i> Reset</button>
-        </div>
-      </div>
-    </section>
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span><i class="fas fa-globe-americas"></i> New York</span>
+      <span><i class="fas fa-globe-americas"></i> London</span>
+      <span><i class="fas fa-globe-americas"></i> Dubai</span>
+      <span><i class="fas fa-globe-americas"></i> Singapore</span>
+      <span><i class="fas fa-globe-americas"></i> Tokyo</span>
+      <span><i class="fas fa-globe-americas"></i> Sydney</span>
+      <span><i class="fas fa-globe-americas"></i> Paris</span>
+      <span><i class="fas fa-globe-americas"></i> Mumbai</span>
+      <span><i class="fas fa-globe-americas"></i> Shanghai</span>
+      <!-- Duplicate for seamless looping -->
+      <span><i class="fas fa-globe-americas"></i> New York</span>
+      <span><i class="fas fa-globe-americas"></i> London</span>
+      <span><i class="fas fa-globe-americas"></i> Dubai</span>
+      <span><i class="fas fa-globe-americas"></i> Singapore</span>
+      <span><i class="fas fa-globe-americas"></i> Tokyo</span>
+      <span><i class="fas fa-globe-americas"></i> Sydney</span>
+    </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-col"><h4>TradeFlow</h4><ul><li><a href="#" onclick="navigateTo('dashboard')">Dashboard</a></li><li><a href="#" onclick="navigateTo('orders')">Orders</a></li><li><a href="#" onclick="navigateTo('products')">Products</a></li><li><a href="#" onclick="navigateTo('customers')">Customers</a></li></ul></div>
-      <div class="footer-col"><h4>Support</h4><ul><li><a href="#">Help Center</a></li><li><a href="#">Documentation</a></li><li><a href="#">API</a></li></ul></div>
-      <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Cookie Policy</a></li></ul></div>
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="sub">What We Offer</span>
+        <h2>Creative <span class="gold">Services</span></h2>
+        <div class="line"></div>
+        <p>End-to-end logistics solutions designed for excellence.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card reveal">
+          <div class="icon-wrap"><i class="fas fa-ship"></i></div>
+          <h4>Ocean Freight</h4>
+          <p>Reliable container shipping across all major ports worldwide.</p>
+        </div>
+        <div class="service-card reveal" style="transition-delay: 0.1s;">
+          <div class="icon-wrap"><i class="fas fa-plane"></i></div>
+          <h4>Air Freight</h4>
+          <p>Rapid air cargo solutions for time-critical, high-value shipments.</p>
+        </div>
+        <div class="service-card reveal" style="transition-delay: 0.2s;">
+          <div class="icon-wrap"><i class="fas fa-truck"></i></div>
+          <h4>Road Logistics</h4>
+          <p>Door-to-door trucking with real-time GPS tracking and security.</p>
+        </div>
+        <div class="service-card reveal" style="transition-delay: 0.3s;">
+          <div class="icon-wrap"><i class="fas fa-file-invoice"></i></div>
+          <h4>Customs Brokerage</h4>
+          <p>Expert clearance and compliance for seamless border crossing.</p>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom">&copy; 2026 TradeFlow. All rights reserved. Crafted with <i class="fas fa-heart" style="color:#d4af37;"></i></div>
-  </footer>
-</div>
+  </section>
 
-<!-- External JavaScript -->
-<script src="script.js"></script>
+  <!-- CREATIVE DIVIDER -->
+  <div class="divider">
+    <div class="container reveal">
+      <h2>15 <span>Years</span></h2>
+      <p>Of redefining global trade with creativity, precision, and trust.</p>
+    </div>
+  </div>
+
+  <!-- PRODUCTS (Horizontal Scroll) -->
+  <section id="products" class="products">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="sub">Featured Goods</span>
+        <h2>Curated <span class="gold">Collection</span></h2>
+        <div class="line"></div>
+        <p>Drag to scroll → Premium products sourced globally.</p>
+      </div>
+      <div class="product-scroll" id="productScroll">
+        <div class="product-item reveal"><span class="emoji">☕</span><h5>Organic Coffee</h5><span>Premium Arabica</span><span class="price-tag">In Stock</span></div>
+        <div class="product-item reveal" style="transition-delay:0.1s;"><span class="emoji">🫒</span><h5>Olive Oil</h5><span>Extra Virgin</span><span class="price-tag">In Stock</span></div>
+        <div class="product-item reveal" style="transition-delay:0.2s;"><span class="emoji">📱</span><h5>Smart Devices</h5><span>Latest Tech</span><span class="price-tag">Pre-order</span></div>
+        <div class="product-item reveal" style="transition-delay:0.3s;"><span class="emoji">🧵</span><h5>Luxury Textiles</h5><span>Cotton & Silk</span><span class="price-tag">In Stock</span></div>
+        <div class="product-item reveal" style="transition-delay:0.4s;"><span class="emoji">🍷</span><h5>Fine Wines</h5><span>Bordeaux Collection</span><span class="price-tag">Limited</span></div>
+        <div class="product-item reveal" style="transition-delay:0.5s;"><span class="emoji">💎</span><h5>Gemstones</h5><span>Certified Origin</span><span class="price-tag">Premium</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="sub">Testimonials</span>
+        <h2>Trusted <span class="gold">Voices</span></h2>
+        <div class="line"></div>
+        <p>What our global partners say about us.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p>Their creative approach to logistics saved us 20% on shipping costs while improving delivery times.</p>
+          <div class="client">
+            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&size=50&background=C9A96E&color=fff" alt="Sarah">
+            <div><div class="name">Sarah Johnson</div><div class="title">CEO, GlobalTech Inc.</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay:0.1s;">
+          <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p>AureliaTrade is the most innovative logistics partner we've worked with. Absolutely seamless.</p>
+          <div class="client">
+            <img src="https://ui-avatars.com/api/?name=Marco+Rossi&size=50&background=C9A96E&color=fff" alt="Marco">
+            <div><div class="name">Marco Rossi</div><div class="title">Import Manager, Milano Foods</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay:0.2s;">
+          <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p>Their real-time tracking and proactive updates give us complete peace of mind. Highly recommended.</p>
+          <div class="client">
+            <img src="https://ui-avatars.com/api/?name=Aisha+Chen&size=50&background=C9A96E&color=fff" alt="Aisha">
+            <div><div class="name">Aisha Chen</div><div class="title">Logistics Director, AsiaTrade</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h3>Let's Create <br><span style="color:#C9A96E;">Together</span></h3>
+          <p>Reach out to our team for a free consultation. We respond within 24 hours.</p>
+          <div class="detail"><i class="fas fa-map-pin"></i> 88 Knightsbridge, London, UK</div>
+          <div class="detail"><i class="fas fa-phone"></i> +44 20 7946 0123</div>
+          <div class="detail"><i class="fas fa-envelope"></i> concierge@aureliatrade.com</div>
+        </div>
+        <form class="contact-form reveal-right" id="contactForm">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="text" placeholder="Subject">
+          <textarea placeholder="Tell us about your creative shipping needs..."></textarea>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5><i class="fas fa-gem" style="color:#C9A96E;"></i> AureliaTrade</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <div class="social">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 <span class="gold">AureliaTrade</span>. A creative logistics studio.
+      </div>
+    </div>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
